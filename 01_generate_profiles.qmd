@@ -1,0 +1,2886 @@
+---
+title: "CAWP Visual Conjoint"
+format: html
+---
+
+# Setup
+
+```{python}
+#Preamble
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
+import os
+import numpy as np
+import random
+import textwrap
+import re, string
+import pandas as pd
+
+```
+
+
+# File Paths
+
+```{python}
+#Local directory
+script_dir = os.path.abspath('')
+
+#Loading subfolders
+avatars_man = os.listdir(os.path.join(script_dir, "avatars", "man"))
+avatars_man.remove('.DS_Store')
+avatars_woman = os.listdir(os.path.join(script_dir, "avatars", "woman"))
+avatars_woman.remove('.DS_Store')
+
+top_image = os.listdir(os.path.join(script_dir, "TopImage"))
+
+
+```
+
+
+# Conjoint Attributes
+
+## Avatars
+
+
+```{python}
+
+# Images
+
+# Issue 2
+
+issue_1_p1_avatavars = [ 'i1_p1_bm', 'i1_p1_wm', 'i1_p1_bf', 'i1_p1_wf']
+issue_1_p2_avatavars = [ 'i1_p2_bm', 'i1_p2_wm', 'i1_p2_bf', 'i1_p2_wf']
+issue_1_p3_avatavars = [ 'i1_p3_bm', 'i1_p3_wm', 'i1_p3_bf', 'i1_p3_wf']
+issue_1_p4_avatavars = [ 'i1_p4_bm', 'i1_p4_wm', 'i1_p4_bf', 'i1_p4_wf']
+issue_1_p5_avatavars = [ 'i1_p5_bm', 'i1_p5_wm', 'i1_p5_bf', 'i1_p5_wf']
+
+
+
+# Issue 2
+
+issue_2_p1_avatavars = [ 'i2_p1_bm', 'i2_p1_wm', 'i2_p1_bf', 'i2_p1_wf']
+issue_2_p2_avatavars = [ 'i2_p2_bm', 'i2_p2_wm', 'i2_p2_bf', 'i2_p2_wf']
+issue_2_p3_avatavars = [ 'i2_p3_bm', 'i2_p3_wm', 'i2_p3_bf', 'i2_p3_wf']
+issue_2_p4_avatavars = [ 'i2_p4_bm', 'i2_p4_wm', 'i2_p4_bf', 'i2_p4_wf']
+issue_2_p5_avatavars = [ 'i2_p5_bm', 'i2_p5_wm', 'i2_p5_bf', 'i2_p5_wf']
+
+# Issue 3
+
+issue_3_p1_avatavars = [ 'i3_p1_bm', 'i3_p1_wm', 'i3_p1_bf', 'i3_p1_wf']
+issue_3_p2_avatavars = [ 'i3_p2_bm', 'i3_p2_wm', 'i3_p2_bf', 'i3_p2_wf']
+issue_3_p3_avatavars = [ 'i3_p3_bm', 'i3_p3_wm', 'i3_p3_bf', 'i3_p3_wf']
+issue_3_p4_avatavars = [ 'i3_p4_bm', 'i3_p4_wm', 'i3_p4_bf', 'i3_p4_wf']
+issue_3_p5_avatavars = [ 'i3_p5_bm', 'i3_p5_wm', 'i3_p5_bf', 'i3_p5_wf']
+```
+
+
+## Names
+
+```{python}
+
+#### ---- NAMES ----- ####
+
+# ---- White ----
+
+## White Male
+white_male_names = [
+  'James Anderson',
+  'Michael Thompson',
+  'Christopher Walker',
+  'Andrew Peterson',
+  'William Carter'
+  ]
+
+## White Female
+white_female_names = [
+  'Emily Johnson',
+  'Sarah Miller',
+  'Jessica Brown',
+  'Ashley Wilson',
+  'Megan Davis'
+]
+
+
+# ---- Black ----
+
+## Black Male
+black_male_names = [
+  'Jamal Jackson',
+  'Malik Robinson',
+  'Tyrone Johnson',
+  'Darnell Harris',
+  'DeAndre Lewis'
+]
+
+# Black Female
+black_female_names = [
+  'Latoya Williams',
+  'Shanice Taylor',
+  'Aaliyah Brown',
+  'Keisha Davis',
+  'Monique Johnson'
+]
+
+```
+
+
+## Biographies
+
+```{python}
+
+# ---- Treatments ----
+
+treat_position = ['pro','con']
+treat_format = ['facts','narrative','both']
+messages = range(1, 31)
+
+# ---- Profession ----
+
+profession = [
+#  "Parent",
+#  "Construction worker",
+#  "Law enforcement officer",
+  "Lawyer",
+#  "Professor",
+#  "Activist", 
+  "Community organizer"
+  ]
+  
+  
+# ---- Strength of Partisanship ---- 
+
+extremity = [
+  "",
+#  "Proud ",
+  "Strong ",
+#  "Moderate "
+]
+
+# ---- Partisanship ----
+
+partisanship = [
+  "Democrat",
+  "Independent",
+  "Republican"
+]
+
+# ---- Tweets About ----
+
+tweets_about = [
+  "criminal justice, cash bail, prison reform", # Policy Specific Pro
+  "crime, justice, law and order", # Policy Specific Con
+#  "policy, wine, and coffee", # Policy + High Class
+#  "policy, pop culture, and puppies" # Policy + No Class
+] 
+
+
+# ---- City ----
+
+city = [
+  "Washington, DC",
+  "New York, NY",
+#  "San Francisco, CA",
+#  "Fresno, CA",
+#  "Staten Island, NY",
+#  "Dallas, TX"
+]
+
+# ---- Year Joined -----
+
+year = ["2018", "2019", "2020", "2021", "2022"]
+
+
+# ---- Month Joined
+
+month = [
+  "January", "February", "March", "April", 
+  "May", "June", "July", "August", "September", 
+  "October", "November", "December"
+  ]
+
+
+
+
+```
+
+
+## Tweets
+
+```{python}
+
+# ---- Cash Bail csv ----
+
+cashbail_tweets_df = pd.read_csv("tweets/cashbail_tweets.csv")
+
+
+# ---- Tariffs csv ----
+
+tariffs_tweets_df = pd.read_csv("tweets/tariffs_tweets.csv")
+
+
+# ---- Maternal Mortality csv ----
+
+matmort_tweets_df = pd.read_csv("tweets/matmort_tweets.csv")
+
+
+```
+
+
+### Study 1: Cash Bail
+
+
+### Study 2: Tariffs
+
+
+### Study 3: Maternal Mortality
+
+# Study 1: Cash Bail
+
+## Profile 1
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_1_p1_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study1", "profile1", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+## Profile 2
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_1_p2_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study1", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+
+## Profile 3
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_1_p3_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study1", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+
+## Profile 4
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_1_p4_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study1", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+## Profile 5
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_1_p5_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study1", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+
+# Study 2: Tariffs
+
+## Profile 1
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_2_p1_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study2", "profile1", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+## Profile 2
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_2_p2_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study2", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+
+## Profile 3
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_2_p3_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study2", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+
+## Profile 4
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_2_p4_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study2", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+## Profile 5
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_2_p5_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study2", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+# Study 3: Maternal Mortality
+
+## Profile 1
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_3_p1_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[0]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study3", "profile1", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+## Profile 2
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_3_p2_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[1]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study3", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+
+## Profile 3
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_3_p3_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[2]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study3", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+
+## Profile 4
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_3_p4_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[3]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study3", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
+
+
+## Profile 5
+
+```{python}
+# Initialize counters for each loop
+a_count = 1
+for a in issue_3_p5_avatavars:
+    m_count = 1
+    for m in messages:
+        p_count = 1
+        for p in profession:
+            e_count = 1
+            for e in extremity:
+                pid_count = 1
+                for pid in partisanship:
+                    ta_count = 1
+                    for ta in tweets_about:
+                        c_count = 1
+                        for c in city:
+                            if 'bm' in a:
+                                p_name = black_male_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wm' in a:
+                                p_name = white_male_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'bf' in a:
+                                p_name = black_female_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            if 'wf' in a:
+                                p_name = white_female_names[4]
+                                p_handle = str('@') + re.sub("[ ,]", "_", p_name)
+                                p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                            
+                            # Biography
+                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
+                            
+                            # Tweet
+                            tweet1 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 1),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet2 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )
+                            tweet3 = str(
+                              cashbail_tweets_df.loc[
+                                (cashbail_tweets_df['message'] == m) &
+                                (cashbail_tweets_df['line'] == 3),
+                                'filler'
+                              ].iloc[0]
+                              )  
+                            # Fonts
+                            font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
+                            font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            font_location = ImageFont.truetype("HelveticaNeue.ttc", 60, index=1)
+                            font_tweetName = ImageFont.truetype("HelveticaNeue.ttc", 50, index = 1)
+                            font_tweet = ImageFont.truetype("HelveticaNeue.ttc", 50)
+                            # Image Processing
+                            img = Image.open('twitter_profile_clean_cwap_edit.png').convert('RGB')
+                            draw = ImageDraw.Draw(img)
+                            draw.text((61, 1079), p_name, (0, 0, 0), font=font_largeName)
+                            draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
+                            draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
+                            back_im = img.copy()
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
+                            mask_im = Image.new("L", im_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im)
+                            draw.ellipse((0, 0, 536, 536), fill=255)
+                            mask_im.save('mask_circle.jpg',quality=95)
+                            back_im.paste(im_avatar, (62, 502), mask_im)
+                            im_sm_avatar = Image.open(avatar_path + str(a) + str('_smaller.png'),'r').convert('RGB')
+                            mask_im_sm_avatar = Image.new("L", im_sm_avatar.size, 0)
+                            draw = ImageDraw.Draw(mask_im_sm_avatar)
+                            draw.ellipse((0, 0, 196, 196), fill=255)
+                            mask_im_sm_avatar.save('mask_circle_smaller.jpg', quality=95)
+                            back_im.paste(im_sm_avatar, (65, 1970), mask_im_sm_avatar)
+                            img = back_im
+                            draw = ImageDraw.Draw(img)
+                            draw.text((155, 1480), c, font=font_smallName, fill="#667786")
+                            draw.text((646, 1480), p_url , font=font_smallName, fill = "#667786")
+  
+                            joined = "Joined " + str(random.choice(month)) + " " + str(random.choice(year))
+                            draw.text((1411, 1480), joined, font=font_smallName, fill="#667786")
+                            draw.text((295, 1987),p_name,(0,0,0), font=font_tweetName)
+                            # Description
+                            y_text = 1284
+                            # Add descritpion
+                            # for line in description:
+                            # width, height = font_smallName.getsize(line)
+                            bbox = font_smallName.getbbox(description)
+                            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                            draw.text((61, y_text), description, font=font_smallName, fill="#14161a")
+                            # Tweets
+                            tweet1 =  textwrap.wrap(tweet1, width = 85)
+                            tweet2 =  textwrap.wrap(tweet2, width = 85)
+                            tweet3 =  textwrap.wrap(tweet3, width = 85)
+                            y_text = 2070
+                            # print(y_text)
+                            for line in tweet1:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            y_text += height
+                                
+                            for line in tweet2:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                #print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                    
+                            y_text += height
+                                
+                            for line in tweet3:
+                                # print(line)
+                                # width, height = font_tweet.getsize(line)
+                                bbox = font_tweet.getbbox(line)
+                                # print(bbox)
+                                width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+                                draw.text((295, y_text), line, font=font_smallName, fill="#14161a")
+                                y_text += height
+                                  
+                            feedback_num = [str(np.random.randint(700,900)),
+                              str(np.random.randint(1000,2000)),
+                              str(np.random.randint(600,900)),  
+                              str(np.random.randint(1500,2000)),
+                              str(np.random.randint(3000,6000)),
+                              str(np.random.randint(250,500)),
+                              str(np.random.randint(500,1500)),
+                              str(np.random.randint(250,500))]
+                            draw.text((61, 1582), feedback_num[0],(0,0,0),font = font_location)
+                            draw.text((500, 1582),feedback_num[1],(0,0,0), font = font_location)
+                            # draw.text((386, 2218),feedback_num[2],font=font_smallName, fill = "#667786")
+                            # draw.text((790, 2218),feedback_num[3],font=font_smallName, fill = "#667786")
+                            # draw.text((1201, 2218),feedback_num[4],font=font_smallName, fill = "#667786")
+                            draw.text((386, 2661),feedback_num[5],font=font_smallName, fill = "#667786")
+                            draw.text((790, 2661),feedback_num[6],font=font_smallName, fill = "#667786")
+                            draw.text((1201, 2661),feedback_num[7],font=font_smallName, fill = "#667786")
+                                # avatar = avatar.replace(".png", "")
+                            newsize = (480,612)
+                            img_name = (
+                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
+                              str(ta_count) + "_c" + str(c_count) + ".png"
+                              )
+                            # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
+                            # img_name = re.sub("[ ,]", "", img_name)
+                            img.save(os.path.join(script_dir, "test_result", "study3", "profile2", img_name), dpi=(300, 300)) 
+                            # Increment inner counters
+                            c_count += 1
+                        ta_count += 1
+                    pid_count += 1
+                e_count += 1
+            p_count += 1
+        m_count += 1
+    a_count += 1
+```
