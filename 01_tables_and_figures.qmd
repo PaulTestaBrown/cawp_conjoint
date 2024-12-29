@@ -1,0 +1,253 @@
+---
+title: "Tables and Figures for IRB"
+format: html
+---
+
+
+# Setup 
+
+```{r}
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(jpeg) # For reading JPG images
+```
+
+
+# Study 1
+
+```{r}
+
+# Generate image file names
+images1 <- sort(c(
+  paste0("avatars/all/i1_", "p", 1:5, "_bm", "_smaller.png"),
+  paste0("avatars/all/i1_", "p", 1:5, "_bf", "_smaller.png"),
+  paste0("avatars/all/i1_", "p", 1:5, "_wm", "_smaller.png"),
+  paste0("avatars/all/i1_", "p", 1:5, "_wf", "_smaller.png")
+))
+
+# Define image labels
+names1 <- c(
+  'Latoya Williams', 'Jamal Jackson', 'Emily Johnson', 'James Anderson',
+  'Shanice Taylor', 'Malik Robinson', 'Sarah Miller', 'Michael Thompson',
+  'Aaliyah Brown', 'Tyrone Johnson', 'Jessica Brown', 'Christopher Walker',
+  'Keisha Davis', 'Darnell Harris', 'Ashley Wilson', 'Andrew Peterson',
+  'Monique Johnson', 'DeAndre Lewis', 'Megan Davis', 'William Carter'
+)
+
+# Define row titles
+row_titles <- c("Profile 1", "Profile 2", "Profile 3", "Profile 4", "Profile 5")
+
+# Create row titles as grobs (left-aligned)
+row_grobs <- lapply(row_titles, function(title) {
+  ggplot() +
+    annotate("text", x = 0, y = 0, label = title, hjust = 0.95, vjust = 0.95, size = 4, fontface = "bold") +
+    theme_void() +
+    theme(plot.margin = margin(l = 10, r = 0, t = 0, b = 0))
+})
+
+# Create image grobs
+image_grobs <- lapply(seq_along(images1), function(i) {
+  img <- rasterGrob(jpeg::readJPEG(images1[i]), interpolate = TRUE)
+  ggplot() +
+    annotation_custom(img, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
+    labs(title = names1[i]) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 8))
+})
+
+# Arrange grobs in a structured layout
+combined_grobs <- list()
+for (i in seq_along(row_titles)) {
+  # Add row title as a single row
+  combined_grobs <- c(combined_grobs, list(row_grobs[[i]]))
+  
+  # Add the corresponding 4 images for this row
+  image_subset <- image_grobs[((i - 1) * 4 + 1):(i * 4)]
+  combined_grobs <- c(combined_grobs, image_subset)
+}
+
+# Custom layout matrix with reduced column spacing
+jpeg("study1_profiles.jpg", width = 6, height = 8, units = "in", res = 300)
+grid.arrange(
+  grobs = combined_grobs,
+  layout_matrix = rbind(
+    c(1, NA, NA, NA),  # Row title spanning 1 column
+    c(2, 3, 4, 5),     # 4 images in one row
+    c(6, NA, NA, NA),  
+    c(7, 8, 9, 10), 
+    c(11, NA, NA, NA),
+    c(12, 13, 14, 15),
+    c(16, NA, NA, NA),
+    c(17, 18, 19, 20),
+    c(21, NA, NA, NA),
+    c(22, 23, 24, 25)
+  ),
+  widths = c(1.2, 1, 1, 1),  # Reduced spacing between image columns
+  heights = rep(c(0.3, 1), 5), # Row title and image heights
+  top = textGrob("Issue 1: Cash Bail Profiles", gp = gpar(fontsize = 14, fontface = "bold")),
+  bottom = textGrob(" ")
+)
+dev.off()
+```
+
+
+
+
+# Study 2
+
+```{r}
+
+# Generate image file names
+images2 <- sort(c(
+  paste0("avatars/all/i2_", "p", 1:5, "_bm", "_smaller.png"),
+  paste0("avatars/all/i2_", "p", 1:5, "_bf", "_smaller.png"),
+  paste0("avatars/all/i2_", "p", 1:5, "_wm", "_smaller.png"),
+  paste0("avatars/all/i2_", "p", 1:5, "_wf", "_smaller.png")
+))
+
+# Define image labels
+names2 <- c(
+  'Tamika Robinson', 'Marcus Brown', 'Amanda Clark', 'John Mitchell',
+  'Imani Harris', 'Lamar Davis', 'Lauren Adams', 'Robert Bennett',
+  'Jasmine Lewis', 'Trevon Green', 'Hannah Thompson', 'Daniel Collins',
+  'Ebony Carter', 'Rashad Carter', 'Rachel Scott', 'Matthew Parker',
+  'Tasha Moore', 'Andre Wilson', 'Nicole Carter', 'David Hughes'
+  )
+
+# Define row titles
+row_titles <- c("Profile 1", "Profile 2", "Profile 3", "Profile 4", "Profile 5")
+
+# Create row titles as grobs (left-aligned)
+row_grobs <- lapply(row_titles, function(title) {
+  ggplot() +
+    annotate("text", x = 0, y = 0, label = title, hjust = 0.95, vjust = 0.95, size = 4, fontface = "bold") +
+    theme_void() +
+    theme(plot.margin = margin(l = 10, r = 0, t = 0, b = 0))
+})
+
+# Create image grobs
+image_grobs <- lapply(seq_along(images2), function(i) {
+  img <- rasterGrob(jpeg::readJPEG(images2[i]), interpolate = TRUE)
+  ggplot() +
+    annotation_custom(img, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
+    labs(title = names2[i]) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 8))
+})
+
+# Arrange grobs in a structured layout
+combined_grobs <- list()
+for (i in seq_along(row_titles)) {
+  # Add row title as a single row
+  combined_grobs <- c(combined_grobs, list(row_grobs[[i]]))
+  
+  # Add the corresponding 4 images for this row
+  image_subset <- image_grobs[((i - 1) * 4 + 1):(i * 4)]
+  combined_grobs <- c(combined_grobs, image_subset)
+}
+
+# Custom layout matrix with reduced column spacing
+jpeg("study2_profiles.jpg", width = 6, height = 8, units = "in", res = 300)
+grid.arrange(
+  grobs = combined_grobs,
+  layout_matrix = rbind(
+    c(1, NA, NA, NA),  # Row title spanning 1 column
+    c(2, 3, 4, 5),     # 4 images in one row
+    c(6, NA, NA, NA),  
+    c(7, 8, 9, 10), 
+    c(11, NA, NA, NA),
+    c(12, 13, 14, 15),
+    c(16, NA, NA, NA),
+    c(17, 18, 19, 20),
+    c(21, NA, NA, NA),
+    c(22, 23, 24, 25)
+  ),
+  widths = c(1.2, 1, 1, 1),  # Reduced spacing between image columns
+  heights = rep(c(0.3, 1), 5), # Row title and image heights
+  top = textGrob("Issue 2: Tariffs Profiles", gp = gpar(fontsize = 14, fontface = "bold")),
+  bottom = textGrob(" ")
+)
+dev.off()
+```
+
+
+# Study 3
+
+```{r}
+
+# Generate image file names
+images3 <- sort(c(
+  paste0("avatars/all/i2_", "p", 1:5, "_bm", "_smaller.png"),
+  paste0("avatars/all/i2_", "p", 1:5, "_bf", "_smaller.png"),
+  paste0("avatars/all/i2_", "p", 1:5, "_wm", "_smaller.png"),
+  paste0("avatars/all/i2_", "p", 1:5, "_wf", "_smaller.png")
+))
+
+# Define image labels
+names3 <- c(
+  'Shanika Green',   'Donnell White', ' Brittany Moore', 'Brian Murphy',
+  'Ayana White',  'Kareem Thompson',  'Samantha White', 'Kevin Ward',
+  'Kiara Mitchell',  'Jerome Taylor', 'Taylor Lewis', 'Charles Cooper',
+  'Tanisha Evans',  'Deshawn Miller', 'Heather Evans', 'Steven Brooks',
+  'Destiny Scott', 'Terrence Evans', 'Courtney Brooks', 'Jason Adams'
+  )
+
+# Define row titles
+row_titles <- c("Profile 1", "Profile 2", "Profile 3", "Profile 4", "Profile 5")
+
+# Create row titles as grobs (left-aligned)
+row_grobs <- lapply(row_titles, function(title) {
+  ggplot() +
+    annotate("text", x = 0, y = 0, label = title, hjust = 0.95, vjust = 0.95, size = 4, fontface = "bold") +
+    theme_void() +
+    theme(plot.margin = margin(l = 10, r = 0, t = 0, b = 0))
+})
+
+# Create image grobs
+image_grobs <- lapply(seq_along(images3), function(i) {
+  img <- rasterGrob(jpeg::readJPEG(images3[i]), interpolate = TRUE)
+  ggplot() +
+    annotation_custom(img, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
+    labs(title = names3[i]) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 8))
+})
+
+# Arrange grobs in a structured layout
+combined_grobs <- list()
+for (i in seq_along(row_titles)) {
+  # Add row title as a single row
+  combined_grobs <- c(combined_grobs, list(row_grobs[[i]]))
+  
+  # Add the corresponding 4 images for this row
+  image_subset <- image_grobs[((i - 1) * 4 + 1):(i * 4)]
+  combined_grobs <- c(combined_grobs, image_subset)
+}
+
+# Custom layout matrix with reduced column spacing
+jpeg("study3_profiles.jpg", width = 6, height = 8, units = "in", res = 300)
+grid.arrange(
+  grobs = combined_grobs,
+  layout_matrix = rbind(
+    c(1, NA, NA, NA),  # Row title spanning 1 column
+    c(2, 3, 4, 5),     # 4 images in one row
+    c(6, NA, NA, NA),  
+    c(7, 8, 9, 10), 
+    c(11, NA, NA, NA),
+    c(12, 13, 14, 15),
+    c(16, NA, NA, NA),
+    c(17, 18, 19, 20),
+    c(21, NA, NA, NA),
+    c(22, 23, 24, 25)
+  ),
+  widths = c(1.2, 1, 1, 1),  # Reduced spacing between image columns
+  heights = rep(c(0.3, 1), 5), # Row title and image heights
+  top = textGrob("Issue 3: Paid Leave Profiles", gp = gpar(fontsize = 14, fontface = "bold")),
+  bottom = textGrob(" ")
+)
+dev.off()
+```
+
+
+

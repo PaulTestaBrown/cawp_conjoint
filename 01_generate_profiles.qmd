@@ -45,7 +45,7 @@ top_image = os.listdir(os.path.join(script_dir, "TopImage"))
 
 # Images
 
-# Issue 2
+# Issue 1
 
 issue_1_p1_avatavars = [ 'i1_p1_bm', 'i1_p1_wm', 'i1_p1_bf', 'i1_p1_wf']
 issue_1_p2_avatavars = [ 'i1_p2_bm', 'i1_p2_wm', 'i1_p2_bf', 'i1_p2_wf']
@@ -82,16 +82,48 @@ issue_3_p5_avatavars = [ 'i3_p5_bm', 'i3_p5_wm', 'i3_p5_bf', 'i3_p5_wf']
 # ---- White ----
 
 ## White Male
-white_male_names = [
+white_male_names1 = [
   'James Anderson',
   'Michael Thompson',
   'Christopher Walker',
   'Andrew Peterson',
   'William Carter'
   ]
+  
+white_male_names2 = [
+    'John Mitchell',
+    'Robert Bennett',
+    'Daniel Collins',
+    'Matthew Parker',
+    'David Hughes'
+]
+
+white_male_names3 = [
+    'Brian Murphy',
+    'Kevin Ward',
+    'Charles Cooper',
+    'Steven Brooks',
+    'Jason Adams'
+]
+
+white_male_names4 = [
+    'Thomas Rogers',
+    'Mark Phillips',
+    'Anthony Kelly',
+    'Paul Richardson',
+    'Jeffrey Scott'
+]
+
+white_male_names5 = [
+    'Gary Howard',
+    'Gregory Cox',
+    'Patrick Bell',
+    'Justin Price',
+    'Timothy Long'
+]  
 
 ## White Female
-white_female_names = [
+white_female_names1 = [
   'Emily Johnson',
   'Sarah Miller',
   'Jessica Brown',
@@ -99,11 +131,42 @@ white_female_names = [
   'Megan Davis'
 ]
 
+white_female_names2 = [
+    'Amanda Clark',
+    'Lauren Adams',
+    'Hannah Thompson',
+    'Rachel Scott',
+    'Nicole Carter'
+]
+
+white_female_names3 = [
+    'Brittany Moore',
+    'Samantha White',
+    'Taylor Lewis',
+    'Heather Evans',
+    'Courtney Brooks'
+]
+
+white_female_names4 = [
+    'Kaitlyn Reed',
+    'Danielle Parker',
+    'Allison Wright',
+    'Rebecca Hill',
+    'Madison Green'
+]
+
+white_female_names5 = [
+    'Olivia Mitchell',
+    'Stephanie Allen',
+    'Abigail Stewart',
+    'Victoria Collins',
+    'Haley Bennett'
+]
 
 # ---- Black ----
 
 ## Black Male
-black_male_names = [
+black_male_names1 = [
   'Jamal Jackson',
   'Malik Robinson',
   'Tyrone Johnson',
@@ -111,13 +174,77 @@ black_male_names = [
   'DeAndre Lewis'
 ]
 
+black_male_names2 = [
+    'Marcus Brown',
+    'Lamar Davis',
+    'Trevon Green',
+    'Rashad Carter',
+    'Andre Wilson'
+]
+
+black_male_names3 = [
+    'Donnell White',
+    'Kareem Thompson',
+    'Jerome Taylor',
+    'Deshawn Miller',
+    'Terrence Evans'
+]
+
+black_male_names4 = [
+    'Maurice Clark',
+    'Jalen Moore',
+    'Antwon Hill',
+    'Leonard Scott',
+    'Tavon Wright'
+]
+
+black_male_names5 = [
+    'Demarcus Reed',
+    'Marquise Walker',
+    'Torrance Adams',
+    'Javon Mitchell',
+    'DeShon Bryant'
+]
+
 # Black Female
-black_female_names = [
+black_female_names1 = [
   'Latoya Williams',
   'Shanice Taylor',
   'Aaliyah Brown',
   'Keisha Davis',
   'Monique Johnson'
+]
+
+black_female_names2 = [
+    'Tamika Robinson',
+    'Imani Harris',
+    'Jasmine Lewis',
+    'Ebony Carter',
+    'Tasha Moore'
+]
+
+black_female_names3 = [
+    'Shanika Green',
+    'Ayana White',
+    'Kiara Mitchell',
+    'Tanisha Evans',
+    'Destiny Scott'
+]
+
+black_female_names4 = [
+    'Nia Reed',
+    'Lashonda Walker',
+    'Brianna Hill',
+    'Maya Wright',
+    'Simone Adams'
+]
+
+black_female_names5 = [
+    'Kenya Brooks',
+    'Tiana Clark',
+    'Raven Stewart',
+    'Deja Allen',
+    'Shayla Collins'
 ]
 
 ```
@@ -135,24 +262,40 @@ messages = range(1, 31)
 
 # ---- Profession ----
 
-profession = [
-#  "Parent",
-#  "Construction worker",
-#  "Law enforcement officer",
+profession1 = [
+  "Construction worker",
+  "Law enforcement officer",
   "Lawyer",
-#  "Professor",
-#  "Activist", 
+  "Professor of Criminology",
+  "Activist", 
   "Community organizer"
   ]
-  
+
+profession2 = [
+  "Construction worker",
+  "Financial analyst",
+  "Small business owner",
+  "Professor of Economics",
+  "Activist", 
+  "Community organizer"
+  ]  
+
+profession3 = [
+  "Parent",
+  "Construction worker",
+  "Doctor",
+  "Professor of Gender Studies",
+  "Activist", 
+  "Community organizer"
+  ]
   
 # ---- Strength of Partisanship ---- 
 
 extremity = [
-  "",
+  " ",
 #  "Proud ",
   "Strong ",
-#  "Moderate "
+  "Moderate "
 ]
 
 # ---- Partisanship ----
@@ -165,24 +308,38 @@ partisanship = [
 
 # ---- Tweets About ----
 
-tweets_about = [
-  "criminal justice, cash bail, prison reform", # Policy Specific Pro
-  "crime, justice, law and order", # Policy Specific Con
-#  "policy, wine, and coffee", # Policy + High Class
-#  "policy, pop culture, and puppies" # Policy + No Class
+tweets_about1 = [
+  "criminal justice, cash bail, prison reform",
+  "crime, justice, law and order", 
+  "policy, wine, and coffee", 
+  "policy, pop culture, and puppies" 
 ] 
 
+tweets_about2 = [
+  "economics, trade policy, and taxes",
+  "the economy, stocks, and crypto", 
+  "policy, classical music, and fine wines", 
+  "policy, pop culture, and sports" 
+] 
 
+tweets_about3 = [
+  "paid family leave, employment rights, and social policy",
+  "small government, traditional families, and individual liberty", 
+  "policy, fine dining, and fashion", 
+  "policy, parent life, and TV" 
+] 
 # ---- City ----
 
 city = [
   "Washington, DC",
   "New York, NY",
-#  "San Francisco, CA",
-#  "Fresno, CA",
-#  "Staten Island, NY",
-#  "Dallas, TX"
+  "San Francisco, CA",
+  "Browerville, MN",
+  "Charleston, SC",
+  "Houston, TX"
 ]
+
+
 
 # ---- Year Joined -----
 
@@ -219,19 +376,12 @@ tariffs_tweets_df = pd.read_csv("tweets/tariffs_tweets.csv")
 
 # ---- Maternal Mortality csv ----
 
-matmort_tweets_df = pd.read_csv("tweets/matmort_tweets.csv")
+paidleave_tweets_df = pd.read_csv("tweets/matmort_tweets.csv")
 
 
 ```
 
 
-### Study 1: Cash Bail
-
-
-### Study 2: Tariffs
-
-
-### Study 3: Maternal Mortality
 
 # Study 1: Cash Bail
 
@@ -242,31 +392,32 @@ matmort_tweets_df = pd.read_csv("tweets/matmort_tweets.csv")
 a_count = 1
 for a in issue_1_p1_avatavars:
     m_count = 1
-    for m in messages:
+    for m in range(1,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession1[1::2][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[0:2]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about1[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:1]:
                             if 'bm' in a:
-                                p_name = black_male_names[0]
+                                p_name = black_male_names1[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[0]
+                                p_name = white_male_names1[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[0]
+                                p_name = black_female_names1[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[0]
+                                p_name = white_female_names1[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -278,21 +429,21 @@ for a in issue_1_p1_avatavars:
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                (cashbail_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -393,13 +544,13 @@ for a in issue_1_p1_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study1", "profile1", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study1", "profile1", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -417,32 +568,33 @@ for a in issue_1_p1_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_1_p2_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 3
+    for m in range(10,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession1[2::3][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[0:2]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about1[1:3]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:1]:
                             if 'bm' in a:
-                                p_name = black_male_names[1]
+                                p_name = black_male_names1[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[1]
+                                p_name = white_male_names1[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[1]
+                                p_name = black_female_names1[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[1]
+                                p_name = white_female_names1[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -454,21 +606,21 @@ for a in issue_1_p2_avatavars:
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                (cashbail_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -484,7 +636,7 @@ for a in issue_1_p2_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile2/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -569,13 +721,13 @@ for a in issue_1_p2_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study1", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study1", "profile2", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -584,6 +736,7 @@ for a in issue_1_p2_avatavars:
             p_count += 1
         m_count += 1
     a_count += 1
+      
 ```
 
 
@@ -594,32 +747,33 @@ for a in issue_1_p2_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_1_p3_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 6
+    for m in range(20,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession1[1::4][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[0:2]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about1[2:4]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[3:4]:
                             if 'bm' in a:
-                                p_name = black_male_names[2]
+                                p_name = black_male_names1[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[2]
+                                p_name = white_male_names1[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[2]
+                                p_name = black_female_names1[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[2]
+                                p_name = white_female_names1[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -631,21 +785,21 @@ for a in issue_1_p3_avatavars:
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                (cashbail_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -661,7 +815,7 @@ for a in issue_1_p3_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile3/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -746,13 +900,13 @@ for a in issue_1_p3_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study1", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study1", "profile3", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -771,32 +925,33 @@ for a in issue_1_p3_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_1_p4_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 9
+    for m in range(15,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession1[0::4][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[0:2]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about1[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[4:6]:
                             if 'bm' in a:
-                                p_name = black_male_names[3]
+                                p_name = black_male_names1[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[3]
+                                p_name = white_male_names1[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[3]
+                                p_name = black_female_names1[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[3]
+                                p_name = white_female_names1[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -808,21 +963,21 @@ for a in issue_1_p4_avatavars:
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                (cashbail_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -838,7 +993,7 @@ for a in issue_1_p4_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile4/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -923,13 +1078,13 @@ for a in issue_1_p4_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study1", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study1", "profile4", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -947,32 +1102,33 @@ for a in issue_1_p4_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_1_p5_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 20
+    for m in range(25,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession1[0::3][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about1[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:2]:
                             if 'bm' in a:
-                                p_name = black_male_names[4]
+                                p_name = black_male_names1[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[4]
+                                p_name = white_male_names1[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[4]
+                                p_name = black_female_names1[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[4]
+                                p_name = white_female_names1[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -984,21 +1140,21 @@ for a in issue_1_p5_avatavars:
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                (cashbail_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
                               cashbail_tweets_df.loc[
                                 (cashbail_tweets_df['message'] == m) &
                                 (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -1014,7 +1170,7 @@ for a in issue_1_p5_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile5/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -1099,13 +1255,13 @@ for a in issue_1_p5_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study1", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study1", "profile5", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -1127,31 +1283,32 @@ for a in issue_1_p5_avatavars:
 a_count = 1
 for a in issue_2_p1_avatavars:
     m_count = 1
-    for m in messages:
+    for m in range(1,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession2[1::2][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[0:2]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about2[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:1]:
                             if 'bm' in a:
-                                p_name = black_male_names[0]
+                                p_name = black_male_names2[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[0]
+                                p_name = white_male_names2[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[0]
+                                p_name = black_female_names2[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[0]
+                                p_name = white_female_names2[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -1160,24 +1317,24 @@ for a in issue_2_p1_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -1193,7 +1350,7 @@ for a in issue_2_p1_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue2',"profile1/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -1278,13 +1435,13 @@ for a in issue_2_p1_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study2", "profile1", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study2", "profile1", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -1302,32 +1459,33 @@ for a in issue_2_p1_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_2_p2_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 3
+    for m in range(10,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession2[2::3][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[0:2]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about2[1:3]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:1]:
                             if 'bm' in a:
-                                p_name = black_male_names[1]
+                                p_name = black_male_names2[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[1]
+                                p_name = white_male_names2[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[1]
+                                p_name = black_female_names2[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[1]
+                                p_name = white_female_names2[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -1336,24 +1494,24 @@ for a in issue_2_p2_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -1369,7 +1527,7 @@ for a in issue_2_p2_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue2',"profile2/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -1454,13 +1612,13 @@ for a in issue_2_p2_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study2", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study2", "profile2", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -1469,6 +1627,7 @@ for a in issue_2_p2_avatavars:
             p_count += 1
         m_count += 1
     a_count += 1
+      
 ```
 
 
@@ -1479,32 +1638,33 @@ for a in issue_2_p2_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_2_p3_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 6
+    for m in range(20,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession2[1::4][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[0:2]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about2[2:4]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[3:4]:
                             if 'bm' in a:
-                                p_name = black_male_names[2]
+                                p_name = black_male_names2[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[2]
+                                p_name = white_male_names2[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[2]
+                                p_name = black_female_names2[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[2]
+                                p_name = white_female_names2[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -1513,24 +1673,24 @@ for a in issue_2_p3_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -1546,7 +1706,7 @@ for a in issue_2_p3_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue2',"profile3/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -1631,13 +1791,13 @@ for a in issue_2_p3_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study2", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study2", "profile3", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -1656,32 +1816,33 @@ for a in issue_2_p3_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_2_p4_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 9
+    for m in range(15,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession2[0::4][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[0:2]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about2[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[4:6]:
                             if 'bm' in a:
-                                p_name = black_male_names[3]
+                                p_name = black_male_names2[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[3]
+                                p_name = white_male_names2[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[3]
+                                p_name = black_female_names2[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[3]
+                                p_name = white_female_names2[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -1690,24 +1851,24 @@ for a in issue_2_p4_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -1723,7 +1884,7 @@ for a in issue_2_p4_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue2',"profile4/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -1808,13 +1969,13 @@ for a in issue_2_p4_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study2", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study2", "profile4", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -1832,32 +1993,33 @@ for a in issue_2_p4_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_2_p5_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 20
+    for m in range(25,30)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession2[0::3][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about2[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:2]:
                             if 'bm' in a:
-                                p_name = black_male_names[4]
+                                p_name = black_male_names2[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[4]
+                                p_name = white_male_names2[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[4]
+                                p_name = black_female_names2[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[4]
+                                p_name = white_female_names2[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -1866,24 +2028,24 @@ for a in issue_2_p5_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -1899,7 +2061,7 @@ for a in issue_2_p5_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue2',"profile5/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -1984,13 +2146,13 @@ for a in issue_2_p5_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study2", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study2", "profile5", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -2002,40 +2164,41 @@ for a in issue_2_p5_avatavars:
 ```
 
 
-# Study 3: Maternal Mortality
 
+# Study 3: Paid Leave
 ## Profile 1
 
 ```{python}
 # Initialize counters for each loop
 a_count = 1
 for a in issue_3_p1_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 12
+    for m in range(1,15)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession3[1::2][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[0:2]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about3[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:1]:
                             if 'bm' in a:
-                                p_name = black_male_names[0]
+                                p_name = black_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[0]
+                                p_name = white_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[0]
+                                p_name = black_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[0]
+                                p_name = white_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -2044,24 +2207,24 @@ for a in issue_3_p1_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -2077,7 +2240,7 @@ for a in issue_3_p1_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue3',"profile1/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -2162,13 +2325,13 @@ for a in issue_3_p1_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study3", "profile1", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study3", "profile1", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -2186,32 +2349,33 @@ for a in issue_3_p1_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_3_p2_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 2
+    for m in range(12,15)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession3[2::3][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[0:2]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about3[1:3]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:1]:
                             if 'bm' in a:
-                                p_name = black_male_names[1]
+                                p_name = black_male_names3[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[1]
+                                p_name = white_male_names3[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[1]
+                                p_name = black_female_names3[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[1]
+                                p_name = white_female_names3[1]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -2220,24 +2384,24 @@ for a in issue_3_p2_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -2253,7 +2417,7 @@ for a in issue_3_p2_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue3',"profile2/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -2338,13 +2502,13 @@ for a in issue_3_p2_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study3", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study3", "profile2", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -2353,6 +2517,7 @@ for a in issue_3_p2_avatavars:
             p_count += 1
         m_count += 1
     a_count += 1
+      
 ```
 
 
@@ -2363,32 +2528,33 @@ for a in issue_3_p2_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_3_p3_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 6
+    for m in range(4,15)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession3[1::4][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[0:2]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about3[2:4]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[3:4]:
                             if 'bm' in a:
-                                p_name = black_male_names[2]
+                                p_name = black_male_names3[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[2]
+                                p_name = white_male_names3[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[2]
+                                p_name = black_female_names3[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[2]
+                                p_name = white_female_names3[2]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -2397,24 +2563,24 @@ for a in issue_3_p3_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -2430,7 +2596,7 @@ for a in issue_3_p3_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue3',"profile3/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -2515,13 +2681,13 @@ for a in issue_3_p3_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study3", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study3", "profile3", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -2540,32 +2706,33 @@ for a in issue_3_p3_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_3_p4_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 9
+    for m in range(10,15)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession3[0::4][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[0:2]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about3[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[4:6]:
                             if 'bm' in a:
-                                p_name = black_male_names[3]
+                                p_name = black_male_names3[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[3]
+                                p_name = white_male_names3[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[3]
+                                p_name = black_female_names3[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[3]
+                                p_name = white_female_names3[3]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -2574,24 +2741,24 @@ for a in issue_3_p4_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -2607,7 +2774,7 @@ for a in issue_3_p4_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue3',"profile4/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -2692,13 +2859,13 @@ for a in issue_3_p4_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study3", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study3", "profile4", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -2716,32 +2883,33 @@ for a in issue_3_p4_avatavars:
 # Initialize counters for each loop
 a_count = 1
 for a in issue_3_p5_avatavars:
-    m_count = 1
-    for m in messages:
+    m_count = 4
+    for m in range(7,15)[:2]:
         p_count = 1
-        for p in profession:
+        for p in profession3[0::3][:2]:
             e_count = 1
-            for e in extremity:
+            for e in extremity[1:3]:
                 pid_count = 1
-                for pid in partisanship:
+                for pid in partisanship[1:3]:
                     ta_count = 1
-                    for ta in tweets_about:
+                    for ta in tweets_about3[0:2]:
+                        print(ta)
                         c_count = 1
-                        for c in city:
+                        for c in city[0:2]:
                             if 'bm' in a:
-                                p_name = black_male_names[4]
+                                p_name = black_male_names3[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wm' in a:
-                                p_name = white_male_names[4]
+                                p_name = white_male_names3[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'bf' in a:
-                                p_name = black_female_names[4]
+                                p_name = black_female_names3[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             if 'wf' in a:
-                                p_name = white_female_names[4]
+                                p_name = white_female_names3[4]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
                             
@@ -2750,24 +2918,24 @@ for a in issue_3_p5_avatavars:
                             
                             # Tweet
                             tweet1 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 1),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 1),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet2 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 2),
+                                'tweet'
                               ].iloc[0]
                               )
                             tweet3 = str(
-                              cashbail_tweets_df.loc[
-                                (cashbail_tweets_df['message'] == m) &
-                                (cashbail_tweets_df['line'] == 3),
-                                'filler'
+                              tariffs_tweets_df.loc[
+                                (tariffs_tweets_df['message'] == m) &
+                                (tariffs_tweets_df['line'] == 3),
+                                'tweet'
                               ].iloc[0]
                               )  
                             # Fonts
@@ -2783,7 +2951,7 @@ for a in issue_3_p5_avatavars:
                             draw.text((61, 1170), p_handle, font=font_smallName, fill="#667786")
                             draw.text((2000, 875), "Follow", font=font_largeName, fill="#1ca1f2")
                             back_im = img.copy()
-                            avatar_path = os.path.join(script_dir, 'avatars', 'issue1',"profile1/")
+                            avatar_path = os.path.join(script_dir, 'avatars', 'issue3',"profile5/")
                             im_avatar = Image.open(avatar_path + str(a) + str('_larger.png'),'r').convert('RGB')
                             mask_im = Image.new("L", im_avatar.size, 0)
                             draw = ImageDraw.Draw(mask_im)
@@ -2868,13 +3036,13 @@ for a in issue_3_p5_avatavars:
                                 # avatar = avatar.replace(".png", "")
                             newsize = (480,612)
                             img_name = (
-                              str(a) + "_m" + str(m_count) + "_p" + str(p_count) + 
+                              str(a) + "_m" + str(m_count) + "_pro" + str(p_count) + 
                               "_e" + str(e_count) + "_pid" + str(pid_count) + "_ta" + 
                               str(ta_count) + "_c" + str(c_count) + ".png"
                               )
                             # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                             # img_name = re.sub("[ ,]", "", img_name)
-                            img.save(os.path.join(script_dir, "test_result", "study3", "profile2", img_name), dpi=(300, 300)) 
+                            img.save(os.path.join(script_dir, "results", "study3", "profile5", img_name), dpi=(300, 300)) 
                             # Increment inner counters
                             c_count += 1
                         ta_count += 1
@@ -2884,3 +3052,5 @@ for a in issue_3_p5_avatavars:
         m_count += 1
     a_count += 1
 ```
+
+

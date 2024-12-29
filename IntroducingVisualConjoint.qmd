@@ -991,7 +991,7 @@ for a in issue_1_p1_avatavars:
                                   )
                                 # "{a}_{t1}_{t2}_p{p_count}_e{e_count}_pid{pid_count}_ta{ta_count}_c{c_count}.png"
                                 # img_name = re.sub("[ ,]", "", img_name)
-                                img.save(os.path.join(script_dir, "test_result", "profile1", img_name), dpi=(300, 300)) 
+                                img.save(os.path.join(script_dir, "test_result", "study1", "profile1", img_name), dpi=(300, 300)) 
                                 # Increment inner counters
                                 c_count += 1
                             ta_count += 1

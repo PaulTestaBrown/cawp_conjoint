@@ -1,0 +1,48 @@
+---
+title: "Tables and Figures for IRB"
+format: html
+---
+
+```{r}
+
+              
+# Load required libraries
+library(ggplot2)
+library(grid)
+library(gridExtra)
+
+# Generate image file names
+images1 <- sort(c(
+  paste0("avatars/all/i1_", "p", 1:5, "_bm", "_smaller.png"),
+  paste0("avatars/all/i1_", "p", 1:5, "_bf", "_smaller.png"),
+  paste0("avatars/all/i1_", "p", 1:5, "_wm", "_smaller.png"),
+  paste0("avatars/all/i1_", "p", 1:5, "_wf", "_smaller.png")
+))
+
+# Define image labels
+names1 <- c(
+  'Latoya Williams', 'Jamal Jackson', 'Emily Johnson', 'James Anderson',
+  'Shanice Taylor', 'Malik Robinson', 'Sarah Miller', 'Michael Thompson',
+  'Aaliyah Brown', 'Tyrone Johnson', 'Jessica Brown', 'Christopher Walker',
+  'Keisha Davis', 'Darnell Harris', 'Ashley Wilson', 'Andrew Peterson',
+  'Monique Johnson', 'DeAndre Lewis', 'Megan Davis', 'William Carter'
+)
+
+# Create a list to store grobs (graphical objects)
+image_grobs <- lapply(seq_along(images1), function(i) {
+  img <- rasterGrob(jpeg::readJPEG(images1[i]), interpolate = TRUE)
+  ggplot() +
+    annotation_custom(img, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
+    labs(title = names1[i]) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 10))
+})
+
+# Arrange the images in a grid (4 images per row, 5 rows)
+png("output_plot.png", width = 8, height = 6, units = "in", res = 300)
+grid.arrange(grobs = image_grobs, ncol = 4)
+dev.off()
+
+
+```
+
