@@ -376,7 +376,7 @@ tariffs_tweets_df = pd.read_csv("tweets/tariffs_tweets.csv")
 
 # ---- Maternal Mortality csv ----
 
-paidleave_tweets_df = pd.read_csv("tweets/matmort_tweets.csv")
+paidleave_tweets_df = pd.read_csv("tweets/paidleave_tweets.csv")
 
 
 ```
@@ -2189,44 +2189,122 @@ for a in issue_3_p1_avatavars:
                                 p_name = black_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                 # Tweet
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wm' in a:
                                 p_name = white_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'bf' in a:
                                 p_name = black_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wf' in a:
                                 p_name = white_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             
                             # Biography
                             description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
                             
-                            # Tweet
-                            tweet1 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 1),
-                                'tweet'
-                              ].iloc[0]
-                              )
-                            tweet2 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 2),
-                                'tweet'
-                              ].iloc[0]
-                              )
-                            tweet3 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 3),
-                                'tweet'
-                              ].iloc[0]
-                              )  
+                            
+                            
+                            
                             # Fonts
                             font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
                             font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
@@ -2363,21 +2441,118 @@ for a in issue_3_p2_avatavars:
                         c_count = 1
                         for c in city[0:1]:
                             if 'bm' in a:
-                                p_name = black_male_names3[1]
+                                p_name = black_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                 # Tweet
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wm' in a:
-                                p_name = white_male_names3[1]
+                                p_name = white_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'bf' in a:
-                                p_name = black_female_names3[1]
+                                p_name = black_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wf' in a:
-                                p_name = white_female_names3[1]
+                                p_name = white_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             
                             # Biography
                             description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
@@ -2529,7 +2704,7 @@ for a in issue_3_p2_avatavars:
 a_count = 1
 for a in issue_3_p3_avatavars:
     m_count = 6
-    for m in range(4,15)[:2]:
+    for m in range(16,19)[:2]:
         p_count = 1
         for p in profession3[1::4][:2]:
             e_count = 1
@@ -2542,47 +2717,118 @@ for a in issue_3_p3_avatavars:
                         c_count = 1
                         for c in city[3:4]:
                             if 'bm' in a:
-                                p_name = black_male_names3[2]
+                                p_name = black_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                 # Tweet
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wm' in a:
-                                p_name = white_male_names3[2]
+                                p_name = white_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'bf' in a:
-                                p_name = black_female_names3[2]
+                                p_name = black_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wf' in a:
-                                p_name = white_female_names3[2]
+                                p_name = white_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
-                            
-                            # Biography
-                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
-                            
-                            # Tweet
-                            tweet1 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 1),
-                                'tweet'
-                              ].iloc[0]
-                              )
-                            tweet2 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 2),
-                                'tweet'
-                              ].iloc[0]
-                              )
-                            tweet3 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 3),
-                                'tweet'
-                              ].iloc[0]
-                              )  
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             # Fonts
                             font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
                             font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
@@ -2707,7 +2953,7 @@ for a in issue_3_p3_avatavars:
 a_count = 1
 for a in issue_3_p4_avatavars:
     m_count = 9
-    for m in range(10,15)[:2]:
+    for m in range(20,23)[:2]:
         p_count = 1
         for p in profession3[0::4][:2]:
             e_count = 1
@@ -2720,47 +2966,118 @@ for a in issue_3_p4_avatavars:
                         c_count = 1
                         for c in city[4:6]:
                             if 'bm' in a:
-                                p_name = black_male_names3[3]
+                                p_name = black_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                 # Tweet
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wm' in a:
-                                p_name = white_male_names3[3]
+                                p_name = white_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'bf' in a:
-                                p_name = black_female_names3[3]
+                                p_name = black_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wf' in a:
-                                p_name = white_female_names3[3]
+                                p_name = white_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
-                            
-                            # Biography
-                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
-                            
-                            # Tweet
-                            tweet1 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 1),
-                                'tweet'
-                              ].iloc[0]
-                              )
-                            tweet2 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 2),
-                                'tweet'
-                              ].iloc[0]
-                              )
-                            tweet3 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 3),
-                                'tweet'
-                              ].iloc[0]
-                              )  
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  ) 
                             # Fonts
                             font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
                             font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
@@ -2884,7 +3201,7 @@ for a in issue_3_p4_avatavars:
 a_count = 1
 for a in issue_3_p5_avatavars:
     m_count = 4
-    for m in range(7,15)[:2]:
+    for m in range(24,30)[:2]:
         p_count = 1
         for p in profession3[0::3][:2]:
             e_count = 1
@@ -2897,47 +3214,118 @@ for a in issue_3_p5_avatavars:
                         c_count = 1
                         for c in city[0:2]:
                             if 'bm' in a:
-                                p_name = black_male_names3[4]
+                                p_name = black_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                 # Tweet
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wm' in a:
-                                p_name = white_male_names3[4]
+                                p_name = white_male_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("m")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'bf' in a:
-                                p_name = black_female_names3[4]
+                                p_name = black_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             if 'wf' in a:
-                                p_name = white_female_names3[4]
+                                p_name = white_female_names3[0]
                                 p_handle = str('@') + re.sub("[ ,]", "_", p_name)
                                 p_url = re.sub("[ ,]", "-", p_name) + str(".com")
-                            
-                            # Biography
-                            description = str(p) + " | " + str(e) + str(pid) + " | Tweets about " + str(ta)
-                            
-                            # Tweet
-                            tweet1 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 1),
-                                'tweet'
-                              ].iloc[0]
-                              )
-                            tweet2 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 2),
-                                'tweet'
-                              ].iloc[0]
-                              )
-                            tweet3 = str(
-                              tariffs_tweets_df.loc[
-                                (tariffs_tweets_df['message'] == m) &
-                                (tariffs_tweets_df['line'] == 3),
-                                'tweet'
-                              ].iloc[0]
-                              )  
+                                tweet1 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 1) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet2 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 2) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
+                                tweet3 = str(
+                                  paidleave_tweets_df.loc[
+                                    (paidleave_tweets_df['message'] == m) &
+                                    (paidleave_tweets_df['line'] == 3) &
+                                    (paidleave_tweets_df['gender'] == str("f")),
+                                    'tweet'
+                                  ].iloc[0]
+                                  )
                             # Fonts
                             font_largeName = ImageFont.truetype("HelveticaNeue.ttc", size=72, index=1)
                             font_smallName = ImageFont.truetype("HelveticaNeue.ttc", 50)
